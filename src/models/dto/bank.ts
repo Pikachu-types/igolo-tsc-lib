@@ -8,7 +8,9 @@ export class ConnectedBankDto extends AbstractCreationDto {
   @Expose() last4: string;
   @Expose() accountName: string;
   @Expose() country: string;
+  @Expose() tenant: string;
   @Expose() currency: string;
+  @Expose() active: boolean;
 
   /**
    * Change record to ConnectedBankDto class

@@ -1,0 +1,108 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DatabaseFunctions = void 0;
+const models_1 = require("../models");
+var DatabaseFunctions;
+(function (DatabaseFunctions) {
+    /**
+    * Database helper class
+    */
+    class Getters {
+        constructor(admin) {
+            this.db = admin;
+        }
+        /**
+          * Go to database said collection and get all
+          * @return {Promise<LeaseDto[]>} returns list.
+          */
+        getLeases() {
+            return __awaiter(this, void 0, void 0, function* () {
+                const source = yield this.db.collection(models_1.collections.leases).get();
+                return source.docs.map((e) => models_1.LeaseDto.fromJson(e.data()));
+            });
+        }
+        /**
+         * Retrieves bank connect processes for a given ID.
+         *
+         * @param id - The unique identifier for the bank connect process.
+         * @returns {Promise<ConnectMyBankDto?>} A promise that resolves to an array of ConnectMyBankDto objects.
+         */
+        getBankConnectProcesses({ id, reference }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                let source;
+                if (id) {
+                    source = yield this.db.collection(models_1.collections.bank_connect)
+                        .where('id', '==', id)
+                        .get();
+                }
+                else if (reference) {
+                    source = yield this.db.collection(models_1.collections.bank_connect)
+                        .where('reference', '==', reference)
+                        .get();
+                    if (source.docs.length < 1)
+                        return;
+                    return source.docs.map((e) => models_1.ConnectMyBankDto.fromJson(e.data()))[0];
+                }
+                else {
+                    return;
+                }
+            });
+        }
+        getDocument({ id, collection }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const source = yield this.db.collection(collection).doc(id)
+                    .get();
+                if (!source.exists)
+                    return;
+                return source.data();
+            });
+        }
+    }
+    DatabaseFunctions.Getters = Getters;
+    /**
+    * Database helper class
+    */
+    class Writer {
+        constructor(admin) {
+            this.db = admin;
+        }
+        /**
+         * Manages a document in the specified collection by either setting or updating it.
+         *
+         * @param {Object} params - The parameters for managing the document.
+         * @param {Record<string, unknown>} params.data - The data to set or update in the document.
+         * @param {string} params.id - The ID of the document to manage.
+         * @param {boolean} [params.setter=false] - Determines whether to set (true) or update (false) the document.
+         * @param {keyof typeof collections} params.collection - The collection in which the document resides.
+         *
+         * @returns {Promise<void>} A promise that resolves when the operation is complete.
+         */
+        manageDocument({ data, id, setter = false, collection }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const query = this.db.
+                    collection(collection).doc(id);
+                if (setter) {
+                    yield query.set(data);
+                }
+                else {
+                    yield query.update(data);
+                }
+            });
+        }
+        addBankAccount() {
+            return __awaiter(this, void 0, void 0, function* () {
+            });
+        }
+    }
+    DatabaseFunctions.Writer = Writer;
+})(DatabaseFunctions = exports.DatabaseFunctions || (exports.DatabaseFunctions = {}));
+//# sourceMappingURL=database.js.map

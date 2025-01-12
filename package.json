@@ -1,9 +1,11 @@
 {
-  "name": "npm-template",
-  "version": "1.0.0",
-  "description": "This package/library servers as a share point for the mono repo structure javascript projects infrastructure is built upon.",
+  "name": "@bukadirect/igolo",
+  "version": "0.1.0",
+  "description": "Private shared models for igolo.homes use",
   "main": "build/index.js",
-  "files": ["/build"],
+  "files": [
+    "/build"
+  ],
   "types": "build/index.d.ts",
   "scripts": {
     "test": "",
@@ -15,18 +17,23 @@
   "author": "Jackmay Confidence Idala",
   "repository": {
     "type": "git",
-    "url": "[your git repository location eg (git+https://github.com/Account-Profile/repo.git)]"
+    "url": "git+https://github.com/Finsel-DGI/igolo.git"
   },
   "bugs": {
-    "url": "[your git issues location eg (https://github.com/Account-Profile/repo/issues)]"
+    "url": "https://github.com/Finsel-DGI/bankid/issues"
   },
-  "homepage": "[provide repo homepage]",
-  "keywords": [],
+  "homepage": "https://github.com/Finsel-DGI/igolo#readme",
+  "keywords": [
+    "igolo"
+  ],
   "license": "ISC",
   "dependencies": {
-    "class-transformer": "^0.5.1",
     "axios": "^1.4.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "labs-sharable": "^1.7.2",
     "reflect-metadata": "^0.1.13",
+    "firebase-admin": "^11.8.0",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {

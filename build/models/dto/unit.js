@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LeaseDto = void 0;
+exports.UnitDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const creationDto_1 = require("../abstracts/creationDto");
-class LeaseDto extends creationDto_1.AbstractCreationDto {
+class UnitDto extends creationDto_1.AbstractCreationDto {
     /**
-   * Change record to LeaseDto class
+   * Change record to UnitDto class
    *
    * @param {Record<string, unknown>} obj  json object from db
-   * @return {LeaseDto} this class
+   * @return {UnitDto} this class
    */
     static fromJson(obj) {
-        const result = (0, class_transformer_1.plainToInstance)(LeaseDto, obj, { excludeExtraneousValues: true });
+        const result = (0, class_transformer_1.plainToInstance)(UnitDto, obj, { excludeExtraneousValues: true });
         return result;
     }
 }
@@ -29,49 +29,37 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "nin", void 0);
+], UnitDto.prototype, "type", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "name", void 0);
+], UnitDto.prototype, "propertyID", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "unit", void 0);
+], UnitDto.prototype, "rentAmount", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "landlord", void 0);
+], UnitDto.prototype, "name", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "tenant", void 0);
+], UnitDto.prototype, "lease", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], LeaseDto.prototype, "status", void 0);
+], UnitDto.prototype, "tenant", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Object)
-], LeaseDto.prototype, "leaseEndDate", void 0);
+    __metadata("design:type", String)
+], UnitDto.prototype, "paymentFrequency", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Date)
-], LeaseDto.prototype, "leaseStartDate", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Date)
-], LeaseDto.prototype, "dueDate", void 0);
-exports.LeaseDto = LeaseDto;
-//# sourceMappingURL=lease.js.map
+    __metadata("design:type", String)
+], UnitDto.prototype, "occupancyStatus", void 0);
+exports.UnitDto = UnitDto;
+//# sourceMappingURL=unit.js.map

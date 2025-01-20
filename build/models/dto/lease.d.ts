@@ -5,6 +5,7 @@ export declare class LeaseDto extends AbstractCreationDto {
     name: string;
     unit: string;
     landlord: string;
+    tenant?: string;
     status: ProcessStatus;
     leaseEndDate?: Date | null;
     leaseStartDate: Date;

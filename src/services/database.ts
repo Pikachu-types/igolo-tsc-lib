@@ -1,6 +1,7 @@
 import * as admin from "firebase-admin";
-import { Collections, collections, ConnectMyBankDto, LeaseDto } from "../models";
-import { parseInterface } from "labs-sharable";
+import { Collections, collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
+import { CustomError, parseInterface } from "labs-sharable";
+import { UnitDto } from "../models/dto/unit";
 
 export namespace DatabaseFunctions { 
 
@@ -48,6 +49,18 @@ export namespace DatabaseFunctions {
       } else {
         return;
       }
+    }
+
+    public async getProperty(id: string): Promise<PropertyDto> {
+      const source = await this.db.collection(collections.properties).doc(id).get();
+      if (!source.exists) throw new CustomError("No such property of id: " + id);
+      return PropertyDto.fromJson(parseInterface(source.data()));
+    }
+
+    public async getUnit(id: string): Promise<UnitDto> {
+      const source = await this.db.collection(collections.units).doc(id).get();
+      if (!source.exists) throw new CustomError("No such unit of id: " + id);
+      return UnitDto.fromJson(parseInterface(source.data()));
     }
 
     public async getDocument({ id, collection }: {

@@ -3,5 +3,6 @@ export * from './dto/shared';
 export * from './dto/lease';
 export * from './dto/tenant';
 export * from './dto/bank';
+export * from './dto/landlord';
 export * from './dto/property';
 export * from './enum';

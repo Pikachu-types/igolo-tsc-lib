@@ -19,6 +19,9 @@ export class LeaseDto extends AbstractCreationDto {
   @IsNotEmpty()
   @Expose()
   landlord: string;
+  
+  @Expose()
+  tenant?: string;
 
   @IsNotEmpty()
   @Expose()

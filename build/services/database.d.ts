@@ -1,5 +1,6 @@
 import * as admin from "firebase-admin";
-import { Collections, ConnectMyBankDto, LeaseDto } from "../models";
+import { Collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
+import { UnitDto } from "../models/dto/unit";
 export declare namespace DatabaseFunctions {
     /**
     * Database helper class
@@ -22,6 +23,8 @@ export declare namespace DatabaseFunctions {
             id?: string;
             reference?: string;
         }): Promise<ConnectMyBankDto | undefined>;
+        getProperty(id: string): Promise<PropertyDto>;
+        getUnit(id: string): Promise<UnitDto>;
         getDocument({ id, collection }: {
             id: string;
             collection: Collections;

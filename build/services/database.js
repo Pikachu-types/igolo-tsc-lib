@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseFunctions = void 0;
 const models_1 = require("../models");
+const labs_sharable_1 = require("labs-sharable");
+const unit_1 = require("../models/dto/unit");
 var DatabaseFunctions;
 (function (DatabaseFunctions) {
     /**
@@ -55,6 +57,22 @@ var DatabaseFunctions;
                 else {
                     return;
                 }
+            });
+        }
+        getProperty(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const source = yield this.db.collection(models_1.collections.properties).doc(id).get();
+                if (!source.exists)
+                    throw new labs_sharable_1.CustomError("No such property of id: " + id);
+                return models_1.PropertyDto.fromJson((0, labs_sharable_1.parseInterface)(source.data()));
+            });
+        }
+        getUnit(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const source = yield this.db.collection(models_1.collections.units).doc(id).get();
+                if (!source.exists)
+                    throw new labs_sharable_1.CustomError("No such unit of id: " + id);
+                return unit_1.UnitDto.fromJson((0, labs_sharable_1.parseInterface)(source.data()));
             });
         }
         getDocument({ id, collection }) {

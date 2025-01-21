@@ -56,5 +56,9 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Boolean)
 ], ConnectedBankDto.prototype, "active", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], ConnectedBankDto.prototype, "primary", void 0);
 exports.ConnectedBankDto = ConnectedBankDto;
 //# sourceMappingURL=bank.js.map

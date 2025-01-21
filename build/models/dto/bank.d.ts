@@ -8,6 +8,7 @@ export declare class ConnectedBankDto extends AbstractCreationDto {
     tenant: string;
     currency: string;
     active: boolean;
+    primary: boolean;
     /**
      * Change record to ConnectedBankDto class
      *

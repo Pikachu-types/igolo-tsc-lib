@@ -42,6 +42,11 @@ export class LeaseDto extends AbstractCreationDto {
   @Type(() => Date)
   @Expose()
   dueDate: Date;
+  
+  @Expose() file?: string;
+
+  @Expose() signatureFlow?: string;
+
 
   /**
  * Change record to LeaseDto class

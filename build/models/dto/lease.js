@@ -73,5 +73,13 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Date)
 ], LeaseDto.prototype, "dueDate", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseDto.prototype, "file", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseDto.prototype, "signatureFlow", void 0);
 exports.LeaseDto = LeaseDto;
 //# sourceMappingURL=lease.js.map

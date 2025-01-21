@@ -10,6 +10,8 @@ export declare class LeaseDto extends AbstractCreationDto {
     leaseEndDate?: Date | null;
     leaseStartDate: Date;
     dueDate: Date;
+    file?: string;
+    signatureFlow?: string;
     /**
    * Change record to LeaseDto class
    *

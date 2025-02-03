@@ -21,6 +21,22 @@ export class LeaseDto extends AbstractCreationDto {
   landlord: string;
   
   @Expose()
+  agreement?: {
+    identifier: string;
+    signature: {
+      iat: number;
+      signature?: string;
+      nin: string;
+      name: string;
+      identification: string;
+    }[],
+    file: {
+      link: string;
+      mime: string;
+    }
+  };
+  
+  @Expose()
   tenant?: string;
 
   @IsNotEmpty()

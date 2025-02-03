@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AbstractCreationDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const labs_sharable_1 = require("labs-sharable");
 class AbstractCreationDto {
     /**
     * This class handler to json
@@ -34,6 +35,9 @@ class AbstractCreationDto {
         }
         return res;
     }
+    generateID({ prefix }) {
+        return `${prefix !== null && prefix !== void 0 ? prefix : ''}_${(0, labs_sharable_1.generateRandomAlphaNumeric)(10)}`;
+    }
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
@@ -51,7 +55,7 @@ __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", Object)
 ], AbstractCreationDto.prototype, "iat", void 0);
 exports.AbstractCreationDto = AbstractCreationDto;
 //# sourceMappingURL=creationDto.js.map

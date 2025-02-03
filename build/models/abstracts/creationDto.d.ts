@@ -1,7 +1,7 @@
 export declare class AbstractCreationDto {
     id: string;
-    lut?: Date | null;
-    iat: Date;
+    lut?: Date | null | number;
+    iat: Date | number;
     /**
     * This class handler to json
     * @return {string} text
@@ -13,4 +13,7 @@ export declare class AbstractCreationDto {
     * @return { Record<string, unknown>} returns doc map .
     */
     toMap(paths?: string[]): Record<string, unknown>;
+    generateID({ prefix }: {
+        prefix?: string;
+    }): string;
 }

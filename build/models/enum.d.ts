@@ -5,6 +5,7 @@ export declare const collections: {
     readonly leases: "leases";
     readonly properties: "properties";
     readonly units: "units";
+    readonly inbox: "inbox";
     readonly checkout: "checkout";
     readonly accounts: "accounts";
     readonly bank_connect: "bank_connect";

@@ -2,6 +2,8 @@ import * as admin from "firebase-admin";
 import { Collections, collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
 import { CustomError, parseInterface } from "labs-sharable";
 import { UnitDto } from "../models/dto/unit";
+import { InboxDto } from '../models/dto/inbox';
+import { removeAllIdentifiers } from "../modules";
 
 export namespace DatabaseFunctions { 
 
@@ -113,5 +115,19 @@ export namespace DatabaseFunctions {
       
     }
 
+    public async createInbox(inbox: InboxDto): Promise<void> {
+      let source;
+      if (inbox.to.startsWith("landlord")) {
+        source = this.db.collection(collections.landlords)
+          .doc(removeAllIdentifiers(inbox.to))
+          .collection(collections.inbox);
+      } else if (inbox.to.startsWith("tenant")) {
+        source = this.db.collection(collections.tenants)
+          .doc(removeAllIdentifiers(inbox.to))
+          .collection(collections.inbox);
+      }
+      if (!source) return;
+      await source.doc(inbox.id).set(inbox.toMap());
+    }
   }
 }

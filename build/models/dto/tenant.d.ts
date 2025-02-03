@@ -6,6 +6,10 @@ export declare class TenantDto extends AbstractCreationDto {
     eid: string;
     security: SecurityDto;
     naming: NamingDto;
+    fcm?: {
+        device: "android" | "ios";
+        token: string;
+    };
     /**
    * Change record to TenantDto class
    *

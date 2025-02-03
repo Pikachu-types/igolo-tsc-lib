@@ -8,6 +8,7 @@ exports.collections = {
     leases: "leases",
     properties: "properties",
     units: "units",
+    inbox: "inbox",
     checkout: "checkout",
     accounts: "accounts",
     "bank_connect": "bank_connect",

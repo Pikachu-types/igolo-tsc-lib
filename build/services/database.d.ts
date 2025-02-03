@@ -1,6 +1,7 @@
 import * as admin from "firebase-admin";
 import { Collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
 import { UnitDto } from "../models/dto/unit";
+import { InboxDto } from '../models/dto/inbox';
 export declare namespace DatabaseFunctions {
     /**
     * Database helper class
@@ -54,5 +55,6 @@ export declare namespace DatabaseFunctions {
             collection: Collections;
         }): Promise<void>;
         addBankAccount(): Promise<void>;
+        createInbox(inbox: InboxDto): Promise<void>;
     }
 }

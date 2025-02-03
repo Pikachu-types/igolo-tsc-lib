@@ -12,6 +12,10 @@ export declare class LandlordDto extends AbstractCreationDto {
     };
     security: SecurityDto;
     naming: NamingDto;
+    fcm?: {
+        device: "android" | "ios";
+        token: string;
+    };
     /**
    * Change record to LandlordDto class
    *

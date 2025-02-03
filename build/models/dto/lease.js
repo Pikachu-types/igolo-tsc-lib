@@ -47,6 +47,10 @@ __decorate([
 ], LeaseDto.prototype, "landlord", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Object)
+], LeaseDto.prototype, "agreement", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], LeaseDto.prototype, "tenant", void 0);
 __decorate([

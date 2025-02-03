@@ -25,6 +25,13 @@ export class TenantDto extends AbstractCreationDto {
   @Expose()
   naming: NamingDto;
 
+  @Expose()
+  fcm?: {
+    device: "android" | "ios";
+    token: string;
+  };
+
+
   /**
  * Change record to TenantDto class
  *

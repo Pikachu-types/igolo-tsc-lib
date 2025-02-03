@@ -32,6 +32,12 @@ export class LandlordDto extends AbstractCreationDto {
   @Type(() => NamingDto)
   @Expose()
   naming: NamingDto;
+  
+  @Expose()
+  fcm?: {
+      device: "android" | "ios";
+      token: string;
+  };
 
   /**
  * Change record to LandlordDto class

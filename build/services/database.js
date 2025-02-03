@@ -13,6 +13,7 @@ exports.DatabaseFunctions = void 0;
 const models_1 = require("../models");
 const labs_sharable_1 = require("labs-sharable");
 const unit_1 = require("../models/dto/unit");
+const modules_1 = require("../modules");
 var DatabaseFunctions;
 (function (DatabaseFunctions) {
     /**
@@ -118,6 +119,24 @@ var DatabaseFunctions;
         }
         addBankAccount() {
             return __awaiter(this, void 0, void 0, function* () {
+            });
+        }
+        createInbox(inbox) {
+            return __awaiter(this, void 0, void 0, function* () {
+                let source;
+                if (inbox.to.startsWith("landlord")) {
+                    source = this.db.collection(models_1.collections.landlords)
+                        .doc((0, modules_1.removeAllIdentifiers)(inbox.to))
+                        .collection(models_1.collections.inbox);
+                }
+                else if (inbox.to.startsWith("tenant")) {
+                    source = this.db.collection(models_1.collections.tenants)
+                        .doc((0, modules_1.removeAllIdentifiers)(inbox.to))
+                        .collection(models_1.collections.inbox);
+                }
+                if (!source)
+                    return;
+                yield source.doc(inbox.id).set(inbox.toMap());
             });
         }
     }

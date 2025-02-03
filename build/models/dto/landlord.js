@@ -73,6 +73,10 @@ __decorate([
     __metadata("design:type", shared_1.NamingDto)
 ], LandlordDto.prototype, "naming", void 0);
 __decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Object)
+], LandlordDto.prototype, "fcm", void 0);
+__decorate([
     (0, class_transformer_1.Expose)({ name: 'fullName' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

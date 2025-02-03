@@ -21,5 +21,6 @@ __exportStar(require("./dto/tenant"), exports);
 __exportStar(require("./dto/bank"), exports);
 __exportStar(require("./dto/landlord"), exports);
 __exportStar(require("./dto/property"), exports);
+__exportStar(require("./dto/inbox"), exports);
 __exportStar(require("./enum"), exports);
 //# sourceMappingURL=index.js.map

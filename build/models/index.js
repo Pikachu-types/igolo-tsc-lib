@@ -19,6 +19,7 @@ __exportStar(require("./dto/shared"), exports);
 __exportStar(require("./dto/lease"), exports);
 __exportStar(require("./dto/tenant"), exports);
 __exportStar(require("./dto/bank"), exports);
+__exportStar(require("./dto/org"), exports);
 __exportStar(require("./dto/landlord"), exports);
 __exportStar(require("./dto/property"), exports);
 __exportStar(require("./dto/inbox"), exports);

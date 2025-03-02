@@ -54,6 +54,14 @@ __decorate([
     __metadata("design:type", String)
 ], LeaseDto.prototype, "tenant", void 0);
 __decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseDto.prototype, "representative", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseDto.prototype, "generatedBy", void 0);
+__decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)

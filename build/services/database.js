@@ -117,25 +117,23 @@ var DatabaseFunctions;
                 }
             });
         }
-        addBankAccount() {
-            return __awaiter(this, void 0, void 0, function* () {
-            });
-        }
         createInbox(inbox) {
             return __awaiter(this, void 0, void 0, function* () {
                 let source;
-                if (inbox.to.startsWith("landlord")) {
-                    source = this.db.collection(models_1.collections.landlords)
-                        .doc((0, modules_1.removeAllIdentifiers)(inbox.to))
+                if (inbox.to.startsWith("org_")) {
+                    source = this.db.collection(models_1.collections.orgs)
+                        .doc((inbox.to))
                         .collection(models_1.collections.inbox);
                 }
-                else if (inbox.to.startsWith("tenant")) {
+                else if (inbox.to.startsWith("tenant_")) {
                     source = this.db.collection(models_1.collections.tenants)
                         .doc((0, modules_1.removeAllIdentifiers)(inbox.to))
                         .collection(models_1.collections.inbox);
                 }
-                if (!source)
+                if (!source) {
+                    console.log(`The source is invalid -- ${inbox.to}`);
                     return;
+                }
                 yield source.doc(inbox.id).set(inbox.toMap());
             });
         }

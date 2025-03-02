@@ -20,6 +20,8 @@ export declare class LeaseDto extends AbstractCreationDto {
         };
     };
     tenant?: string;
+    representative: string;
+    generatedBy: string;
     status: ProcessStatus;
     leaseEndDate?: Date | null;
     leaseStartDate: Date;

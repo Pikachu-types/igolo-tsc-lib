@@ -111,22 +111,21 @@ export namespace DatabaseFunctions {
       }
     }
 
-    public async addBankAccount() {
-      
-    }
-
     public async createInbox(inbox: InboxDto): Promise<void> {
       let source;
-      if (inbox.to.startsWith("landlord")) {
-        source = this.db.collection(collections.landlords)
-          .doc(removeAllIdentifiers(inbox.to))
+      if (inbox.to.startsWith("org_")) {
+        source = this.db.collection(collections.orgs)
+          .doc((inbox.to))
           .collection(collections.inbox);
-      } else if (inbox.to.startsWith("tenant")) {
+      } else if (inbox.to.startsWith("tenant_")) {
         source = this.db.collection(collections.tenants)
           .doc(removeAllIdentifiers(inbox.to))
           .collection(collections.inbox);
       }
-      if (!source) return;
+      if (!source) {
+        console.log(`The source is invalid -- ${inbox.to}`);
+        return;
+      }
       await source.doc(inbox.id).set(inbox.toMap());
     }
   }

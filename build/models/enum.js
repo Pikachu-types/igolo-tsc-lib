@@ -4,7 +4,8 @@ exports.collections = void 0;
 exports.collections = {
     logic: "logic",
     tenants: "tenants",
-    landlords: "landlord",
+    landlords: "landlords",
+    orgs: "orgs",
     leases: "leases",
     properties: "properties",
     units: "units",

@@ -54,7 +54,6 @@ export declare namespace DatabaseFunctions {
             setter: boolean;
             collection: Collections;
         }): Promise<void>;
-        addBankAccount(): Promise<void>;
         createInbox(inbox: InboxDto): Promise<void>;
     }
 }

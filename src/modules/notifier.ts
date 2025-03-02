@@ -5,7 +5,7 @@ import { LandlordDto, TenantDto } from "../models";
 import { InboxDto, notificationType } from "../models/dto/inbox";
 import { DatabaseFunctions } from "../services/database";
 
-export type Account = TenantDto | LandlordDto;
+export type Account = TenantDto | LandlordDto ;
 
 export type fcmChannels = "critical_channel" | "basic_channel" | "scheduled_channel" | "chat_channel";
 /**

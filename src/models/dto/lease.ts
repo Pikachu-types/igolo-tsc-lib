@@ -39,6 +39,10 @@ export class LeaseDto extends AbstractCreationDto {
   @Expose()
   tenant?: string;
 
+  @Expose() representative: string;
+
+  @Expose() generatedBy: string;
+
   @IsNotEmpty()
   @Expose()
   status: ProcessStatus;

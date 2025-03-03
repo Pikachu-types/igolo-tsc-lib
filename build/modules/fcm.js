@@ -56,7 +56,7 @@ class Messaging {
                     },
                     data: Object.assign({}, data && Object.fromEntries(Object.entries(data).map(([key, value]) => [
                         key,
-                        key === 'arg' ? (0, labs_sharable_1.parseInterface)(value) : String(value)
+                        key === 'arg' ? JSON.stringify(value) : String(value)
                     ])))
                 });
                 console.log('Successfully sent message:', response);

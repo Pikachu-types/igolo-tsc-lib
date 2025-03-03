@@ -71,7 +71,7 @@ export class Messaging {
           ...data && Object.fromEntries(
             Object.entries(data).map(([key, value]) => [
               key,
-              key === 'arg' ? parseInterface(value) : String(value)
+              key === 'arg' ? JSON.stringify(value) : String(value)
             ]),
           ),
         }

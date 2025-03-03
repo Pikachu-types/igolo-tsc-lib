@@ -51,12 +51,12 @@ class Messaging {
                             channelId: channel !== null && channel !== void 0 ? channel : "critical_channel",
                             priority: "high",
                             sound: 'default',
-                            color: '#FF0000', // Red color for notification icon
+                            color: '#84948B', // color for notification icon
                         },
                     },
-                    data: Object.assign({}, (data === null || data === void 0 ? void 0 : data.arg) && Object.fromEntries(Object.entries(data.arg).map(([key, value]) => [
+                    data: Object.assign({}, data && Object.fromEntries(Object.entries(data).map(([key, value]) => [
                         key,
-                        key === 'extra' ? JSON.stringify(value) : String(value)
+                        key === 'arg' ? (0, labs_sharable_1.parseInterface)(value) : String(value)
                     ])))
                 });
                 console.log('Successfully sent message:', response);

@@ -1,10 +1,10 @@
 import * as admin from "firebase-admin";
-import { Account, fcmChannels } from "./notifier";
+import { fcmChannels } from "./notifier";
 import { DatabaseFunctions } from "../services/database";
 import { notificationType } from "../models";
 import { FCMArgs } from "labs-sharable/dist/modules/fcm_models";
 import { InboxDto } from '../models/dto/inbox';
-import { notificationID, NotificationRestriction, unixTimeStampNow } from "labs-sharable";
+import { notificationID, NotificationRestriction, parseInterface, unixTimeStampNow } from "labs-sharable";
 
 export class Messaging {
 
@@ -28,7 +28,6 @@ export class Messaging {
     }
   }): Promise<void> {
     try {
-
       await setter.createInbox(InboxDto.fromJson({
         to: topic,
         actor: null,
@@ -65,16 +64,16 @@ export class Messaging {
             channelId: channel ?? "critical_channel", // Ensure this matches a created channel on the device
             priority: "high",
             sound: 'default',
-            color: '#FF0000', // Red color for notification icon
+            color: '#84948B', // color for notification icon
           },
         },
         data: {
-          ...data?.arg && Object.fromEntries(
-            Object.entries(data.arg).map(([key, value]) => [
+          ...data && Object.fromEntries(
+            Object.entries(data).map(([key, value]) => [
               key,
-              key === 'extra' ? JSON.stringify(value) : String(value)
-            ])
-          )
+              key === 'arg' ? parseInterface(value) : String(value)
+            ]),
+          ),
         }
       });
       console.log('Successfully sent message:', response);

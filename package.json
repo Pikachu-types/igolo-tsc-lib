@@ -1,6 +1,6 @@
 {
   "name": "@bukadirect/igolo",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Private shared models for igolo.homes use",
   "main": "build/index.js",
   "files": [

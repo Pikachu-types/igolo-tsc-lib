@@ -1,5 +1,25 @@
 import { AbstractCreationDto } from "../abstracts/creationDto";
-import { ProcessStatus } from "../enum";
+import { PaymentFrequency, ProcessStatus } from "../enum";
+export declare class LeaseChargeDto extends AbstractCreationDto {
+    tenant: string;
+    landlord: string;
+    lease: string;
+    reference: string;
+    currency: string;
+    bank: {
+        name: string;
+        last4: string;
+    };
+    status: "paid" | "failed" | "stale";
+    amount: number;
+    /**
+     * Change record to LeaseChargeDto class
+     *
+     * @param {Record<string, unknown>} obj  json object from db
+     * @return {LeaseChargeDto} this class
+    */
+    static fromJson(obj: Record<string, unknown>): LeaseChargeDto;
+}
 export declare class LeaseDto extends AbstractCreationDto {
     nin: string;
     name: string;
@@ -21,11 +41,14 @@ export declare class LeaseDto extends AbstractCreationDto {
     };
     tenant?: string;
     representative: string;
+    bankConnected?: boolean;
+    isActive?: boolean;
     generatedBy: string;
     status: ProcessStatus;
     leaseEndDate?: Date | null;
     leaseStartDate: Date;
     dueDate: Date;
+    collectionDate?: Date;
     file?: string;
     signatureFlow?: string;
     /**
@@ -35,4 +58,5 @@ export declare class LeaseDto extends AbstractCreationDto {
    * @return {LeaseDto} this class
    */
     static fromJson(obj: Record<string, unknown>): LeaseDto;
+    static calculateNextCollectionDate(due: Date, frequency: PaymentFrequency): string;
 }

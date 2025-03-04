@@ -13,7 +13,8 @@ export declare class AbstractCreationDto {
     * @return { Record<string, unknown>} returns doc map .
     */
     toMap(paths?: string[]): Record<string, unknown>;
-    generateID({ prefix }: {
+    generateID({ prefix, length }: {
         prefix?: string;
+        length?: number;
     }): string;
 }

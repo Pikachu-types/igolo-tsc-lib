@@ -35,8 +35,8 @@ class AbstractCreationDto {
         }
         return res;
     }
-    generateID({ prefix }) {
-        return `${prefix !== null && prefix !== void 0 ? prefix : ''}_${(0, labs_sharable_1.generateRandomAlphaNumeric)(10)}`;
+    generateID({ prefix, length }) {
+        return `${prefix !== null && prefix !== void 0 ? prefix : ''}_${(0, labs_sharable_1.generateRandomAlphaNumeric)(length !== null && length !== void 0 ? length : 10)}`;
     }
 }
 __decorate([

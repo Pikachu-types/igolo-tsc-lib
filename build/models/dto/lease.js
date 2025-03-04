@@ -9,10 +9,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LeaseDto = void 0;
+exports.LeaseDto = exports.LeaseChargeDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const creationDto_1 = require("../abstracts/creationDto");
+class LeaseChargeDto extends creationDto_1.AbstractCreationDto {
+    /**
+     * Change record to LeaseChargeDto class
+     *
+     * @param {Record<string, unknown>} obj  json object from db
+     * @return {LeaseChargeDto} this class
+    */
+    static fromJson(obj) {
+        const result = (0, class_transformer_1.plainToInstance)(LeaseChargeDto, obj, { excludeExtraneousValues: true });
+        return result;
+    }
+}
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "tenant", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "landlord", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "lease", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "reference", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "currency", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Object)
+], LeaseChargeDto.prototype, "bank", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "status", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], LeaseChargeDto.prototype, "amount", void 0);
+exports.LeaseChargeDto = LeaseChargeDto;
 class LeaseDto extends creationDto_1.AbstractCreationDto {
     /**
    * Change record to LeaseDto class
@@ -23,6 +68,26 @@ class LeaseDto extends creationDto_1.AbstractCreationDto {
     static fromJson(obj) {
         const result = (0, class_transformer_1.plainToInstance)(LeaseDto, obj, { excludeExtraneousValues: true });
         return result;
+    }
+    static calculateNextCollectionDate(due, frequency) {
+        const nextCollection = new Date(); // Start from today
+        switch (frequency) {
+            case "daily":
+                nextCollection.setDate(nextCollection.getDate() + 1);
+                break;
+            case "weekly":
+                nextCollection.setDate(nextCollection.getDate() + ((7 - nextCollection.getDay()) || 7));
+                break;
+            case "monthly":
+                nextCollection.setMonth(nextCollection.getMonth() + 1);
+                nextCollection.setDate(due.getDate()); // Maintain due day
+                break;
+            case "yearly":
+                nextCollection.setFullYear(nextCollection.getFullYear() + 1);
+                nextCollection.setMonth(due.getMonth(), due.getDate()); // Maintain due month and day
+                break;
+        }
+        return nextCollection.toISOString().split("T")[0]; // Return in YYYY-MM-DD format
     }
 }
 __decorate([
@@ -59,6 +124,14 @@ __decorate([
 ], LeaseDto.prototype, "representative", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], LeaseDto.prototype, "bankConnected", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], LeaseDto.prototype, "isActive", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], LeaseDto.prototype, "generatedBy", void 0);
 __decorate([
@@ -85,6 +158,12 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Date)
 ], LeaseDto.prototype, "dueDate", void 0);
+__decorate([
+    (0, class_validator_1.IsDate)(),
+    (0, class_transformer_1.Type)(() => Date),
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Date)
+], LeaseDto.prototype, "collectionDate", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)

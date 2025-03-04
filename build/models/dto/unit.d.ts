@@ -3,7 +3,7 @@ import { OccupancyStatus, PaymentFrequency } from "../enum";
 export declare class UnitDto extends AbstractCreationDto {
     type: string;
     propertyID: string;
-    rentAmount: string;
+    rentAmount: number;
     name: string;
     lease?: string;
     tenant?: string;

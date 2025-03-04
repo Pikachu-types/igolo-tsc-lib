@@ -38,7 +38,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], UnitDto.prototype, "rentAmount", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),

@@ -42,7 +42,7 @@ export class AbstractCreationDto {
     return res;
   }
 
-  public generateID({ prefix }: { prefix?: string }) {
-    return `${prefix ?? ''}_${generateRandomAlphaNumeric(10)}`;
+  public generateID({ prefix, length }: { prefix?: string, length?: number }) {
+    return `${prefix ?? ''}_${generateRandomAlphaNumeric(length ?? 10)}`;
   }
 }

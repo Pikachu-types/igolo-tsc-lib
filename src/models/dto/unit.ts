@@ -14,7 +14,7 @@ export class UnitDto extends AbstractCreationDto {
 
   @IsNotEmpty()
   @Expose()
-  rentAmount: string;
+  rentAmount: number;
 
   @IsNotEmpty()
   @Expose()

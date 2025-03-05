@@ -46,14 +46,10 @@ __decorate([
 ], AbstractCreationDto.prototype, "id", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Object)
 ], AbstractCreationDto.prototype, "lut", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Object)
 ], AbstractCreationDto.prototype, "iat", void 0);

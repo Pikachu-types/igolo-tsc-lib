@@ -1,5 +1,5 @@
-import { Expose, Type } from "class-transformer";
-import { IsOptional, IsDate, IsNotEmpty } from "class-validator";
+import { Expose } from "class-transformer";
+import { IsOptional, IsNotEmpty } from "class-validator";
 import { generateRandomAlphaNumeric } from "labs-sharable";
 
 export class AbstractCreationDto {
@@ -8,13 +8,9 @@ export class AbstractCreationDto {
   id: string;
 
   @IsOptional()
-  @IsDate()
-  @Type(() => Date)
   @Expose()
   lut?: Date | null | number;
 
-  @IsDate()
-  @Type(() => Date)
   @Expose()
   iat: Date | number;
 

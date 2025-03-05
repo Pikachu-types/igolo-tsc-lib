@@ -11,6 +11,8 @@ export type TMember = {
 export class OrganisationDto extends AbstractCreationDto {
 
   @Expose() name: string;
+  @Expose() test?: boolean;
+  @Expose() paystack_code?: string;
   @Expose() members: Record<string, TMember>;
   @Expose() banking: {
     accountName: string;

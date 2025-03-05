@@ -31,6 +31,14 @@ __decorate([
 ], OrganisationDto.prototype, "name", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], OrganisationDto.prototype, "test", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], OrganisationDto.prototype, "paystack_code", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Object)
 ], OrganisationDto.prototype, "members", void 0);
 __decorate([

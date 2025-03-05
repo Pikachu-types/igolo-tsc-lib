@@ -7,6 +7,8 @@ export type TMember = {
 };
 export declare class OrganisationDto extends AbstractCreationDto {
     name: string;
+    test?: boolean;
+    paystack_code?: string;
     members: Record<string, TMember>;
     banking: {
         accountName: string;

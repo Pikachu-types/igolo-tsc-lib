@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { Collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
+import { Collections, ConnectMyBankDto, LeaseDto, OrganisationDto, PropertyDto } from "../models";
 import { UnitDto } from "../models/dto/unit";
 import { InboxDto } from '../models/dto/inbox';
 export declare namespace DatabaseFunctions {
@@ -25,6 +25,7 @@ export declare namespace DatabaseFunctions {
             reference?: string;
         }): Promise<ConnectMyBankDto | undefined>;
         getProperty(id: string): Promise<PropertyDto>;
+        getOrganisation(id: string): Promise<OrganisationDto>;
         getUnit(id: string): Promise<UnitDto>;
         getDocument({ id, collection }: {
             id: string;

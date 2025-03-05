@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { Collections, collections, ConnectMyBankDto, LeaseDto, PropertyDto } from "../models";
+import { Collections, collections, ConnectMyBankDto, LeaseDto, OrganisationDto, PropertyDto } from "../models";
 import { CustomError, parseInterface } from "labs-sharable";
 import { UnitDto } from "../models/dto/unit";
 import { InboxDto } from '../models/dto/inbox';
@@ -57,6 +57,12 @@ export namespace DatabaseFunctions {
       const source = await this.db.collection(collections.properties).doc(id).get();
       if (!source.exists) throw new CustomError("No such property of id: " + id);
       return PropertyDto.fromJson(parseInterface(source.data()));
+    }
+
+    public async getOrganisation(id: string): Promise<OrganisationDto> {
+      const source = await this.db.collection(collections.orgs).doc(id).get();
+      if (!source.exists) throw new CustomError("No such organisation of id: " + id);
+      return OrganisationDto.fromJson(parseInterface(source.data()));
     }
 
     public async getUnit(id: string): Promise<UnitDto> {

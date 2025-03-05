@@ -68,6 +68,14 @@ var DatabaseFunctions;
                 return models_1.PropertyDto.fromJson((0, labs_sharable_1.parseInterface)(source.data()));
             });
         }
+        getOrganisation(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const source = yield this.db.collection(models_1.collections.orgs).doc(id).get();
+                if (!source.exists)
+                    throw new labs_sharable_1.CustomError("No such organisation of id: " + id);
+                return models_1.OrganisationDto.fromJson((0, labs_sharable_1.parseInterface)(source.data()));
+            });
+        }
         getUnit(id) {
             return __awaiter(this, void 0, void 0, function* () {
                 const source = yield this.db.collection(models_1.collections.units).doc(id).get();

@@ -5,6 +5,7 @@ export declare class LeaseChargeDto extends AbstractCreationDto {
     landlord: string;
     lease: string;
     reference: string;
+    nextDue: string;
     currency: string;
     bank: {
         name: string;
@@ -19,6 +20,7 @@ export declare class LeaseChargeDto extends AbstractCreationDto {
      * @return {LeaseChargeDto} this class
     */
     static fromJson(obj: Record<string, unknown>): LeaseChargeDto;
+    static calculatePercentage(amount: number, percentage: number): number;
 }
 export declare class LeaseDto extends AbstractCreationDto {
     nin: string;
@@ -41,6 +43,7 @@ export declare class LeaseDto extends AbstractCreationDto {
     };
     tenant?: string;
     representative: string;
+    chargePending?: boolean;
     bankConnected?: boolean;
     isActive?: boolean;
     generatedBy: string;

@@ -24,6 +24,9 @@ class LeaseChargeDto extends creationDto_1.AbstractCreationDto {
         const result = (0, class_transformer_1.plainToInstance)(LeaseChargeDto, obj, { excludeExtraneousValues: true });
         return result;
     }
+    static calculatePercentage(amount, percentage) {
+        return (amount * percentage) / 100;
+    }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
@@ -41,6 +44,10 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], LeaseChargeDto.prototype, "reference", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
+], LeaseChargeDto.prototype, "nextDue", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
@@ -122,6 +129,10 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
 ], LeaseDto.prototype, "representative", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], LeaseDto.prototype, "chargePending", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Boolean)

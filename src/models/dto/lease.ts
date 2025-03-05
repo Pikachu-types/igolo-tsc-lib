@@ -8,6 +8,7 @@ export class LeaseChargeDto extends AbstractCreationDto {
   @Expose() landlord: string;
   @Expose() lease: string;
   @Expose() reference: string;
+  @Expose() nextDue: string;
   @Expose() currency: string;
   @Expose() bank: {
     name: string;
@@ -27,6 +28,10 @@ export class LeaseChargeDto extends AbstractCreationDto {
     const result: LeaseChargeDto = plainToInstance(LeaseChargeDto, obj,
       { excludeExtraneousValues: true });
     return result;
+  }
+
+  public static calculatePercentage(amount: number, percentage: number): number {
+    return (amount * percentage) / 100;
   }
 }
 
@@ -67,6 +72,8 @@ export class LeaseDto extends AbstractCreationDto {
   tenant?: string;
 
   @Expose() representative: string;
+
+  @Expose() chargePending?: boolean;
 
   @Expose() bankConnected?: boolean;
 

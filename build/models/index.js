@@ -24,4 +24,5 @@ __exportStar(require("./dto/landlord"), exports);
 __exportStar(require("./dto/property"), exports);
 __exportStar(require("./dto/inbox"), exports);
 __exportStar(require("./enum"), exports);
+__exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

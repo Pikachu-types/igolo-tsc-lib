@@ -1,11 +1,60 @@
 import { AbstractCreationDto } from "../abstracts/creationDto";
 import { PaymentFrequency, ProcessStatus } from "../enum";
+import { AddressDto } from "..";
+export interface ChargeReceipt {
+    payMethod: string;
+    id: string;
+    reference: string;
+    paid: number;
+    paidAt: number;
+    taxBehavior: "inclusive" | "exclusive";
+    date: number;
+    due?: number;
+    tenant: {
+        name: string;
+        nin: string;
+        email: string;
+        tenantID: string;
+    };
+    landlord: {
+        name: string;
+        address: AddressDto;
+        email?: string;
+        id: string;
+        vat?: string;
+    };
+    fees: {
+        vat: number;
+    };
+    lease: {
+        /**
+         * Next Due date
+         */
+        maturity: string;
+        /**
+         * Rent period
+         */
+        period: string;
+        address: AddressDto;
+        currency: string;
+        rent: {
+            sum: number;
+            frequency: PaymentFrequency;
+        };
+        property: {
+            unit: string;
+            unitID: string;
+            propertyID: string;
+        };
+    };
+}
 export declare class LeaseChargeDto extends AbstractCreationDto {
     tenant: string;
     landlord: string;
     lease: string;
     reference: string;
     nextDue: string;
+    collectionDate: string;
     currency: string;
     bank: {
         name: string;
@@ -13,6 +62,7 @@ export declare class LeaseChargeDto extends AbstractCreationDto {
     };
     status: "paid" | "failed" | "stale";
     amount: number;
+    paidAt: number;
     /**
      * Change record to LeaseChargeDto class
      *
@@ -51,7 +101,7 @@ export declare class LeaseDto extends AbstractCreationDto {
     leaseEndDate?: Date | null;
     leaseStartDate: Date;
     dueDate: Date;
-    collectionDate?: Date;
+    collectionDate?: string;
     file?: string;
     signatureFlow?: string;
     /**

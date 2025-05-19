@@ -1,9 +1,13 @@
 import * as admin from "firebase-admin";
-import { Collections, collections, ConnectMyBankDto, LeaseDto, OrganisationDto, PropertyDto } from "../models";
-import { CustomError, parseInterface } from "labs-sharable";
+import {
+  Collections, collections, ConnectMyBankDto,
+  LeaseDto, OrganisationDto, PropertyDto, WebhookRetry
+} from "../models";
+import { CustomError, parseInterface, unixTimeStampNow } from "labs-sharable";
 import { UnitDto } from "../models/dto/unit";
 import { InboxDto } from '../models/dto/inbox';
 import { removeAllIdentifiers } from "../modules";
+import { Http } from "./http";
 
 export namespace DatabaseFunctions { 
 
@@ -91,6 +95,53 @@ export namespace DatabaseFunctions {
 
     constructor(admin: admin.firestore.Firestore) {
       this.db = admin;
+    }
+
+
+    /**
+     * Sends a webhook request to the specified URL with the provided body and retries on failure.
+     * 
+     * @param {Object} params - The parameters for sending the webhook.
+     * @param {string} params.url - The URL to which the webhook request is sent.
+     * @param {any} params.body - The body of the webhook request.
+     * @param {string} params.documentId - The unique identifier of the document associated with the webhook.
+     * @param {WebhookRetry["documentType"]} params.documentType - The type of the document associated with the webhook.
+     * 
+     * @returns {Promise<boolean>} - Returns a promise that resolves to true if the webhook is sent successfully, or false if it fails and is queued for retry.
+     * 
+     * @throws Will log an error message if the webhook request fails.
+     */
+    public async sendWebhookWithRetry({
+      url,
+      body,
+      documentId,
+      documentType,
+    }: {
+      url: string;
+      body: any;
+      documentId: string;
+      documentType: WebhookRetry["documentType"];
+    }): Promise<boolean> {
+      try {
+        await Http.post({ url, body });
+        return true;
+      } catch (error) {
+        console.error(`Webhook failed for ${documentId}. Error:`, error);
+        // Save failed webhook for retry
+        const retry: WebhookRetry = {
+          id: this.db.collection(collections.webhookRetries).doc().id,
+          url,
+          body,
+          documentId,
+          documentType,
+          createdAt: unixTimeStampNow(),
+          lastAttempt: unixTimeStampNow(),
+          attempts: 1,
+          maxAttempts: 5,
+        };
+        await this.db.collection(collections.webhookRetries).doc(retry.id).set(retry);
+        return false;
+      }
     }
 
     /**

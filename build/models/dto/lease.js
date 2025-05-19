@@ -51,6 +51,10 @@ __decorate([
 __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
+], LeaseChargeDto.prototype, "collectionDate", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", String)
 ], LeaseChargeDto.prototype, "currency", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
@@ -64,6 +68,10 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], LeaseChargeDto.prototype, "amount", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], LeaseChargeDto.prototype, "paidAt", void 0);
 exports.LeaseChargeDto = LeaseChargeDto;
 class LeaseDto extends creationDto_1.AbstractCreationDto {
     /**
@@ -170,10 +178,8 @@ __decorate([
     __metadata("design:type", Date)
 ], LeaseDto.prototype, "dueDate", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_transformer_1.Type)(() => Date),
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], LeaseDto.prototype, "collectionDate", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),

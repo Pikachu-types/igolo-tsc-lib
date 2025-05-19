@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { Collections, ConnectMyBankDto, LeaseDto, OrganisationDto, PropertyDto } from "../models";
+import { Collections, ConnectMyBankDto, LeaseDto, OrganisationDto, PropertyDto, WebhookRetry } from "../models";
 import { UnitDto } from "../models/dto/unit";
 import { InboxDto } from '../models/dto/inbox';
 export declare namespace DatabaseFunctions {
@@ -38,6 +38,25 @@ export declare namespace DatabaseFunctions {
     class Writer {
         readonly db: admin.firestore.Firestore;
         constructor(admin: admin.firestore.Firestore);
+        /**
+         * Sends a webhook request to the specified URL with the provided body and retries on failure.
+         *
+         * @param {Object} params - The parameters for sending the webhook.
+         * @param {string} params.url - The URL to which the webhook request is sent.
+         * @param {any} params.body - The body of the webhook request.
+         * @param {string} params.documentId - The unique identifier of the document associated with the webhook.
+         * @param {WebhookRetry["documentType"]} params.documentType - The type of the document associated with the webhook.
+         *
+         * @returns {Promise<boolean>} - Returns a promise that resolves to true if the webhook is sent successfully, or false if it fails and is queued for retry.
+         *
+         * @throws Will log an error message if the webhook request fails.
+         */
+        sendWebhookWithRetry({ url, body, documentId, documentType, }: {
+            url: string;
+            body: any;
+            documentId: string;
+            documentType: WebhookRetry["documentType"];
+        }): Promise<boolean>;
         /**
          * Manages a document in the specified collection by either setting or updating it.
          *

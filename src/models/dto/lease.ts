@@ -2,6 +2,55 @@ import { Expose, plainToInstance, Type } from "class-transformer";
 import { IsDate, IsNotEmpty, IsOptional } from "class-validator";
 import { AbstractCreationDto } from "../abstracts/creationDto";
 import { PaymentFrequency, ProcessStatus } from "../enum";
+import { AddressDto } from "..";
+
+export interface ChargeReceipt {
+  payMethod: string;
+  id: string;
+  reference: string;
+  paid: number;
+  paidAt: number;
+  taxBehavior: "inclusive" | "exclusive";
+  date: number;
+  due?: number;
+  tenant: {
+    name: string;
+    nin: string;
+    email: string;
+    tenantID: string;
+  },
+  landlord: {
+    name: string;
+    address: AddressDto;
+    email?: string;
+    id: string;
+    vat?: string;
+  },
+  fees: {
+    vat: number,
+  },
+  lease: {
+    /**
+     * Next Due date
+     */
+    maturity: string,
+    /**
+     * Rent period
+     */
+    period: string;
+    address: AddressDto,
+    currency: string;
+    rent: {
+      sum: number;
+      frequency: PaymentFrequency;
+    },
+    property: {
+      unit: string,
+      unitID: string;
+      propertyID: string;
+    }
+  }
+}
 
 export class LeaseChargeDto extends AbstractCreationDto {
   @Expose() tenant: string;
@@ -9,6 +58,7 @@ export class LeaseChargeDto extends AbstractCreationDto {
   @Expose() lease: string;
   @Expose() reference: string;
   @Expose() nextDue: string;
+  @Expose() collectionDate: string;
   @Expose() currency: string;
   @Expose() bank: {
     name: string;
@@ -16,6 +66,7 @@ export class LeaseChargeDto extends AbstractCreationDto {
   };
   @Expose() status: "paid" | "failed" | "stale";
   @Expose() amount: number;
+  @Expose() paidAt: number;
 
   /**
    * Change record to LeaseChargeDto class
@@ -101,10 +152,8 @@ export class LeaseDto extends AbstractCreationDto {
   @Expose()
   dueDate: Date;
 
-  @IsDate()
-  @Type(() => Date)
   @Expose()
-  collectionDate?: Date;
+  collectionDate?: string;
   
   @Expose() file?: string;
 

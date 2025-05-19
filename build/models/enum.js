@@ -9,6 +9,7 @@ exports.collections = {
     leases: "leases",
     properties: "properties",
     units: "units",
+    webhookRetries: "webhook-retries",
     inbox: "inbox",
     checkout: "checkout",
     accounts: "accounts",
@@ -25,6 +26,7 @@ const frequency = {
     monthly: "monthly",
     yearly: "yearly",
     weekly: "weekly",
+    quarterly: "quarterly",
     daily: "daily",
 };
 const ocStatus = {

@@ -1,3 +1,15 @@
+export interface WebhookRetry {
+  id: string;
+  url: string;
+  body: Record<string, unknown>;
+  createdAt: number;
+  lastAttempt: number;
+  attempts: number;
+  maxAttempts: number;
+  documentId: string;
+  documentType: "lease" | "charge";
+}
+
 export type IReminder = {
   name: string;
   nin: string;

@@ -6,6 +6,7 @@ export declare const collections: {
     readonly leases: "leases";
     readonly properties: "properties";
     readonly units: "units";
+    readonly webhookRetries: "webhook-retries";
     readonly inbox: "inbox";
     readonly checkout: "checkout";
     readonly accounts: "accounts";
@@ -21,6 +22,7 @@ declare const frequency: {
     readonly monthly: "monthly";
     readonly yearly: "yearly";
     readonly weekly: "weekly";
+    readonly quarterly: "quarterly";
     readonly daily: "daily";
 };
 declare const ocStatus: {

@@ -66,7 +66,7 @@ export class LeaseChargeDto extends AbstractCreationDto {
   };
   @Expose() status: "paid" | "failed" | "stale";
   @Expose() amount: number;
-  @Expose() paidAt: number;
+  @Expose() paidAt?: number | undefined | null;
 
   /**
    * Change record to LeaseChargeDto class
@@ -190,8 +190,23 @@ export class LeaseDto extends AbstractCreationDto {
         nextCollection.setDate(due.getDate()); // Maintain due day
         break;
 
+      case "quarterly":
+        nextCollection.setMonth(nextCollection.getMonth() + 3);
+        nextCollection.setDate(due.getDate()); // Maintain due day
+        break;
+
+      case "biannually":
+        nextCollection.setMonth(nextCollection.getMonth() + 6);
+        nextCollection.setDate(due.getDate()); // Maintain due day
+        break;
+
       case "yearly":
         nextCollection.setFullYear(nextCollection.getFullYear() + 1);
+        nextCollection.setMonth(due.getMonth(), due.getDate()); // Maintain due month and day
+        break;
+
+      case "biennial":
+        nextCollection.setFullYear(nextCollection.getFullYear() + 2);
         nextCollection.setMonth(due.getMonth(), due.getDate()); // Maintain due month and day
         break;
     }

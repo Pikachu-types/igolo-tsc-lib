@@ -4,6 +4,7 @@ export declare const collections: {
     readonly landlords: "landlords";
     readonly orgs: "orgs";
     readonly leases: "leases";
+    readonly charges: "charges";
     readonly properties: "properties";
     readonly units: "units";
     readonly webhookRetries: "webhook-retries";
@@ -17,13 +18,16 @@ declare const pStatus: {
     readonly cancelled: "cancelled";
     readonly reviewing: "reviewing";
     readonly completed: "completed";
+    readonly terminated: "terminated";
 };
 declare const frequency: {
     readonly monthly: "monthly";
     readonly yearly: "yearly";
     readonly weekly: "weekly";
-    readonly quarterly: "quarterly";
     readonly daily: "daily";
+    readonly quarterly: "quarterly";
+    readonly biannually: "biannually";
+    readonly biennial: "biennial";
 };
 declare const ocStatus: {
     readonly occupied: "occupied";

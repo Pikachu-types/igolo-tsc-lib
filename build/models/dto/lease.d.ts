@@ -62,7 +62,7 @@ export declare class LeaseChargeDto extends AbstractCreationDto {
     };
     status: "paid" | "failed" | "stale";
     amount: number;
-    paidAt: number;
+    paidAt?: number | undefined | null;
     /**
      * Change record to LeaseChargeDto class
      *

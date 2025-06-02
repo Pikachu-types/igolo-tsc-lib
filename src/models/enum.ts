@@ -4,6 +4,7 @@ export const collections = {
   landlords: "landlords",
   orgs: "orgs",
   leases: "leases",
+  charges: "charges",
   properties: "properties",
   units: "units",
   webhookRetries: "webhook-retries",
@@ -19,14 +20,17 @@ const pStatus = {
   cancelled: "cancelled",
   reviewing: "reviewing",
   completed: "completed",
+  terminated: "terminated",
 } as const;
 
 const frequency = {
   monthly: "monthly",
   yearly: "yearly",
   weekly: "weekly",
-  quarterly: "quarterly",
   daily: "daily",
+  quarterly: "quarterly",
+  biannually: "biannually",
+  biennial: "biennial",
 } as const;
 
 const ocStatus = {

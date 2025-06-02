@@ -70,7 +70,7 @@ __decorate([
 ], LeaseChargeDto.prototype, "amount", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", Object)
 ], LeaseChargeDto.prototype, "paidAt", void 0);
 exports.LeaseChargeDto = LeaseChargeDto;
 class LeaseDto extends creationDto_1.AbstractCreationDto {
@@ -97,8 +97,20 @@ class LeaseDto extends creationDto_1.AbstractCreationDto {
                 nextCollection.setMonth(nextCollection.getMonth() + 1);
                 nextCollection.setDate(due.getDate()); // Maintain due day
                 break;
+            case "quarterly":
+                nextCollection.setMonth(nextCollection.getMonth() + 3);
+                nextCollection.setDate(due.getDate()); // Maintain due day
+                break;
+            case "biannually":
+                nextCollection.setMonth(nextCollection.getMonth() + 6);
+                nextCollection.setDate(due.getDate()); // Maintain due day
+                break;
             case "yearly":
                 nextCollection.setFullYear(nextCollection.getFullYear() + 1);
+                nextCollection.setMonth(due.getMonth(), due.getDate()); // Maintain due month and day
+                break;
+            case "biennial":
+                nextCollection.setFullYear(nextCollection.getFullYear() + 2);
                 nextCollection.setMonth(due.getMonth(), due.getDate()); // Maintain due month and day
                 break;
         }

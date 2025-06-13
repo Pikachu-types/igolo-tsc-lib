@@ -56,6 +56,10 @@ export declare class LeaseChargeDto extends AbstractCreationDto {
     nextDue: string;
     collectionDate: string;
     currency: string;
+    fees?: {
+        paystack: number;
+        integration: number;
+    };
     bank: {
         name: string;
         last4: string;

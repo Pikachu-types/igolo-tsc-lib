@@ -60,6 +60,10 @@ export class LeaseChargeDto extends AbstractCreationDto {
   @Expose() nextDue: string;
   @Expose() collectionDate: string;
   @Expose() currency: string;
+  @Expose() fees?: {
+    paystack: number;
+    integration: number;
+  }
   @Expose() bank: {
     name: string;
     last4: string;

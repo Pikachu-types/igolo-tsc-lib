@@ -3,9 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.collections = void 0;
 exports.collections = {
     logic: "logic",
-    tenants: "tenants",
-    landlords: "landlords",
-    orgs: "orgs",
+    users: "users",
+    organizations: "organizations",
     leases: "leases",
     charges: "charges",
     properties: "properties",

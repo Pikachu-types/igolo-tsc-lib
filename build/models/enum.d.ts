@@ -1,8 +1,7 @@
 export declare const collections: {
     readonly logic: "logic";
-    readonly tenants: "tenants";
-    readonly landlords: "landlords";
-    readonly orgs: "orgs";
+    readonly users: "users";
+    readonly organizations: "organizations";
     readonly leases: "leases";
     readonly charges: "charges";
     readonly properties: "properties";

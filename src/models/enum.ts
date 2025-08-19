@@ -1,8 +1,7 @@
 export const collections = {
   logic: "logic",
-  tenants: "tenants",
-  landlords: "landlords",
-  orgs: "orgs",
+  users: "users",
+  organizations: "organizations",
   leases: "leases",
   charges: "charges",
   properties: "properties",

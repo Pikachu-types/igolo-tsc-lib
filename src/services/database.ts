@@ -64,7 +64,7 @@ export namespace DatabaseFunctions {
     }
 
     public async getOrganisation(id: string): Promise<OrganisationDto> {
-      const source = await this.db.collection(collections.orgs).doc(id).get();
+      const source = await this.db.collection(collections.organizations).doc(id).get();
       if (!source.exists) throw new CustomError("No such organisation of id: " + id);
       return OrganisationDto.fromJson(parseInterface(source.data()));
     }
@@ -171,11 +171,11 @@ export namespace DatabaseFunctions {
     public async createInbox(inbox: InboxDto): Promise<void> {
       let source;
       if (inbox.to.startsWith("org_")) {
-        source = this.db.collection(collections.orgs)
+        source = this.db.collection(collections.organizations)
           .doc((inbox.to))
           .collection(collections.inbox);
       } else if (inbox.to.startsWith("tenant_")) {
-        source = this.db.collection(collections.tenants)
+        source = this.db.collection(collections.users)
           .doc(removeAllIdentifiers(inbox.to))
           .collection(collections.inbox);
       }

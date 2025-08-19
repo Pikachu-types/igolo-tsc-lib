@@ -71,7 +71,7 @@ var DatabaseFunctions;
         }
         getOrganisation(id) {
             return __awaiter(this, void 0, void 0, function* () {
-                const source = yield this.db.collection(models_1.collections.orgs).doc(id).get();
+                const source = yield this.db.collection(models_1.collections.organizations).doc(id).get();
                 if (!source.exists)
                     throw new labs_sharable_1.CustomError("No such organisation of id: " + id);
                 return models_1.OrganisationDto.fromJson((0, labs_sharable_1.parseInterface)(source.data()));
@@ -168,12 +168,12 @@ var DatabaseFunctions;
             return __awaiter(this, void 0, void 0, function* () {
                 let source;
                 if (inbox.to.startsWith("org_")) {
-                    source = this.db.collection(models_1.collections.orgs)
+                    source = this.db.collection(models_1.collections.organizations)
                         .doc((inbox.to))
                         .collection(models_1.collections.inbox);
                 }
                 else if (inbox.to.startsWith("tenant_")) {
-                    source = this.db.collection(models_1.collections.tenants)
+                    source = this.db.collection(models_1.collections.users)
                         .doc((0, modules_1.removeAllIdentifiers)(inbox.to))
                         .collection(models_1.collections.inbox);
                 }

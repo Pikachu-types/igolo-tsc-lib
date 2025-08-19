@@ -26,6 +26,15 @@ export class TenantDto extends AbstractCreationDto {
   naming: NamingDto;
 
   @Expose()
+  address: {
+    city: string;
+    country: string;
+    postCode?: string;
+    street: string;
+    state: string;
+  };
+
+  @Expose()
   fcm?: {
     device: "android" | "ios";
     token: string;

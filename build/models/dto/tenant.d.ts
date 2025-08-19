@@ -6,6 +6,13 @@ export declare class TenantDto extends AbstractCreationDto {
     eid: string;
     security: SecurityDto;
     naming: NamingDto;
+    address: {
+        city: string;
+        country: string;
+        postCode?: string;
+        street: string;
+        state: string;
+    };
     fcm?: {
         device: "android" | "ios";
         token: string;

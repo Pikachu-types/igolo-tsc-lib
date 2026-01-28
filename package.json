@@ -17,12 +17,12 @@
   "author": "Jackmay Confidence Idala",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Finsel-DGI/igolo.git"
+    "url": "git+https://github.com/Pikachu-types/igolo-tsc-lib.git"
   },
   "bugs": {
-    "url": "https://github.com/Finsel-DGI/bankid/issues"
+    "url": "https://github.com/Pikachu-types/igolo-tsc-lib/issues"
   },
-  "homepage": "https://github.com/Finsel-DGI/igolo#readme",
+  "homepage": "https://github.com/Pikachu-types/igolo-tsc-lib#readme",
   "keywords": [
     "igolo"
   ],
